@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link id="mainStyleSheet" rel="stylesheet" href="/erste/default.css">
+    <title>Carlson Beete Rechner</title>
+    <style>
+    .labelbeetet2{
+        color: rgb(245, 41, 41);
+    }
+    .labelbeetet1{
+        color: #00ff00;
+    }
+    </style>
+</head>
+<body class="Bodybeete">
+<div class="Hallo1">Dienstleitungs Unternehmen Carlson vom Dach
+</div>
+<form class="formbeete" id="myForm">
+<label class="labelbeete">
+        <input type="checkbox" name="auswahl" value="261" data-points="5"> Route 1: 261
+    </label>
+    <label class="labelbeete">
+        <input type="checkbox" name="auswahl" value="263" data-points="20"> Route 1: 263
+    </label>
+    <label class="labelbeete">
+        <input type="checkbox" name="auswahl" value="1415" data-points="5"> Route 1: 1415
+    </label>
+    <label class="labelbeete">
+        <input type="checkbox" name="auswahl" value="262" data-points="5"> Route 1: 262
+    </label>
+    <label class="labelbeete">
+        <input type="checkbox" name="auswahl" value="590" data-points="10"> Route 1: 590
+    </label>
+    <label class="labelbeete">
+        <input type="checkbox" name="auswahl" value="61" data-points="5"> Route 1: 61
+    </label>
+    <label class="labelbeete">
+        <input type="checkbox" name="auswahl" value="1409" data-points="10"> Route 1: 1409
+    </label>
+    <label class="labelbeete">
+        <input type="checkbox" name="auswahl" value="1411" data-points="5"> Route 1: 1411
+    </label>
+    <label class="labelbeete">
+        <input type="checkbox" name="auswahl" value="468" data-points="5"> Route 1: 468
+    </label>
+    <label class="labelbeete">
+        <input type="checkbox" name="auswahl" value="1127" data-points="15"> Route 1: 1127 (wenn möglich)
+    </label>
+    <label class="labelbeetet2">
+        <input class="Tplabel2" type="checkbox" name="auswahl" value="TP1" data-points="5"> Route 1: TP1
+    </label>
+    <label class="labelbeetet1">
+        <input class="Tplabel1" type="checkbox" name="auswahl" value="TP2" data-points="5"> Route 1: TP2
+    </label>
+<hr>
+    <label class="labelbeete">
+        <input type="checkbox" name="auswahl" value="Plantage" data-points="20"> Route 2: Plantage
+    </label>
+    <label class="labelbeete">
+        <input type="checkbox" name="auswahl" value="P2" data-points="15"> Route 2: P2
+    </label>
+    <label class="labelbeete">
+        <input type="checkbox" name="auswahl" value="P11" data-points="20"> Route 2: P11
+    </label>
+    <label class="labelbeete">
+        <input type="checkbox" name="auswahl" value="465" data-points="10"> Route 2: 465
+    </label>
+    <label class="labelbeete">
+        <input type="checkbox" name="auswahl" value="449" data-points="5"> Route 2: 449
+    </label>
+    <label class="labelbeete">
+        <input type="checkbox" name="auswahl" value="1011" data-points="5"> Route 2: 1011
+    </label>
+    <label class="labelbeete">
+        <input type="checkbox" name="auswahl" value="436" data-points="5"> Route 2: 436
+    </label>
+    <label class="labelbeete">
+        <input type="checkbox" name="auswahl" value="geflogen" data-points="0"> Plantage geflogen
+    </label>
+    <label class="labelbeete">
+
+        <textarea class="Area" id="zusatzInfo" rows="2" cols="50" placeholder ="Zusätzliche Informationen"></textarea>
+
+        <textarea class="Area1" id="ergebnis" rows="4" cols="50" readonly></textarea>
+        <button class="buttonbeete" id="copyButton">Kopiere Ergebnisse</button>
+        <div class="box2" onclick="window.location.href='http://127.0.0.1:5500/erste/Beete/sheeets.html'" onmouseover="hover(this)" onmouseout="unhover(this)">
+            Eintragen
+          </div>
+
+
+</form>
+<script>
+    const checkboxes = document.querySelectorAll('input[name="auswahl"]');
+    const textarea = document.getElementById('ergebnis');
+    const zusatzInfoTextarea = document.getElementById('zusatzInfo');
+    const copyButton = document.getElementById('copyButton');
+
+    checkboxes.forEach((checkbox) => {
+        checkbox.addEventListener('change', updateText);
+    });
+
+    zusatzInfoTextarea.addEventListener('input', updateText);
+
+    copyButton.addEventListener('click', copyText);
+
+    function updateText() {
+        let totalPoints = 0;
+        const selectedOptions = Array.from(checkboxes)
+            .filter(checkbox => checkbox.checked && checkbox.value !== "P2" && checkbox.value !== "P11" && checkbox.value !== "geflogen")
+            .map(checkbox => {
+                const points = parseInt(checkbox.getAttribute('data-points')) || 0;
+                totalPoints += points;
+                return checkbox.value;
+            })
+            .join(', ');
+
+        const currentTime = getCurrentTimeIn30MinuteIncrements();
+        const currentDate = new Date().toLocaleDateString();
+        const zusatzInfo = zusatzInfoTextarea.value.trim();
+
+        let newText = `${currentDate}\n${currentTime}\n${selectedOptions} \n${zusatzInfo}\n${totalPoints}`;
+
+        if (Array.from(checkboxes).some(checkbox => checkbox.value === "geflogen" && checkbox.checked)) {
+            newText += '\n8000';
+        }
+        else{
+            newText += '\n';
+        }
+        if (Array.from(checkboxes).some(checkbox => checkbox.value === "P11" && checkbox.checked)) {
+            newText += '\nP11\n20';
+        }
+        else{
+            newText += '\n\n';
+        }
+        if (Array.from(checkboxes).some(checkbox => checkbox.value === "P2" && checkbox.checked)) {
+            newText += '\nP2\n15';
+        }
+        textarea.value = newText;
+    }
+
+    function getCurrentTimeIn30MinuteIncrements() {
+    const now = new Date();
+    const minutes = now.getMinutes();
+    const roundedMinutes = Math.floor(minutes / 30) * 30;
+    now.setMinutes(roundedMinutes);
+
+    const formattedTime = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    return formattedTime;
+}
+
+
+    function copyText() {
+        const copyTextarea = document.getElementById('ergebnis');
+        copyTextarea.select();
+        document.execCommand('copy');
+    }
+    function submitData() {
+        var sheet = document.getElementById('sheet').value;
+    }
+
+</script>
+
+</body>
+</html>

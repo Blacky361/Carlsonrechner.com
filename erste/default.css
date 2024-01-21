@@ -1,0 +1,180 @@
+body {
+    background-image:url('red.png');
+    text-align: center;
+}
+.Hallo1 {
+    border: 1px solid #ffffff;
+    background-color: #c9c9c9;  
+    text-align: center;
+    border-radius: 100px;
+    margin: 10px;
+    font-size: 50px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.box {
+    display: inline-block;
+    width: 200px;
+    height: 100px;
+    background-color: rgba(255, 255, 255, 0.479);
+    margin: 100px;
+    text-align: center;
+    line-height: 100px;
+    cursor: pointer;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    border: 2px solid #ffffff;
+    border-radius: 10px;
+  }
+  
+  .box:hover {
+    background-color: rgba(255, 255, 255, 0.945);
+  }
+
+  
+
+  .Hallo {
+    border: 1px solid #ffffff;
+    background-color: #c9c9c9;  
+    text-align: center;
+    border-radius: 100px;
+    margin: 10px;
+    font-size: 50px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}   
+  img{
+    border: 3px solid #ffffff;
+    border-radius: 10px;
+    width: 450px;
+    height: auto;
+  }
+.text1{
+  margin: 0%;
+  margin-top: -40px;
+  font-size: 20px;
+  color: #c9c9c9;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  
+
+}
+.box1{
+  display: inline-block;
+  margin: 55px;
+  margin-top: 100px;
+  text-align: center;
+}
+.Tabbele1{
+  border-collapse: collapse;
+  width: 80%;
+  margin: auto;
+}
+.the,.thel{
+  border: 1px solid #dddddd;
+  text-align: left ;
+  padding: 8px;
+  color: #ffffff;
+}
+.the{
+  background-color: #dddddd;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  color: #3b3a3a;
+}
+
+.Bodybeete {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  background-image:url('red.png');
+  color: #ecf0f1; 
+  text-align: left;
+}
+
+.h2beete {
+  color: #e2e2e2; 
+}
+
+.formbeete {
+  margin: 20px; 
+}
+
+.labelbeete {
+  display: block;
+  margin-bottom: 5px;
+  color: #ffffff; 
+}
+
+input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+textarea:read-only {
+  background-color: #000000;
+}
+
+input[type="checkbox"]:checked + label {
+  background-color: #1c96e7;
+  color: #ffffff; 
+  font-weight: bold;}
+.buttonbeete {
+          padding: 8px;
+          background-color: #000000;
+          color: #ffffff;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          border: 2px solid #ffffff;
+      }
+.Area{
+  margin-top: 10px; 
+  width: 100%; 
+  padding: 10px;
+  box-sizing: border-box;
+  border: 2px solid #ffffff; 
+  border-radius: 5px; 
+  background-color: #000000; 
+  color: #e6e95a;
+}
+.Area1{
+  margin-top: 10px; 
+  width: 100%; 
+  padding: 10px;
+  box-sizing: border-box;
+  border: 2px solid #ffffff; 
+  border-radius: 5px; 
+  background-color: #ffffff; 
+  color: #ffffff;
+}
+textarea::placeholder {
+  color: #ffffff; 
+  font-style: italic; 
+  font-size: 14px; 
+}
+.Tplabel2{
+  text-align: center;
+}
+.box2 {
+  display: inline-block;
+  width: 200px;
+  height: 25px;
+  background-color: rgb(0, 0, 0);
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  line-height: auto;
+  cursor: pointer;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  border: 2px solid #ffffff;
+  border-radius: 5px;
+  padding: 3px;
+  margin-bottom: -10px;
+}
+.labelsender{
+  text-align: center;
+  color: #ffffff;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: bold;
+}
+.Buttonsheet{
+  border: 2px solid #ffffff;
+  border-radius: 5px;
+  background-color: #000000;
+  color: #ffffff;
+}

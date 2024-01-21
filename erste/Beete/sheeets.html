@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link id="mainStyleSheet" rel="stylesheet" href="/erste/default.css">
+  <title>EIntragen Carlson</title>
+</head>
+<body style="text-align: left;margin-top: 10px;">
+
+<div class="Hallo">Wilkommen Zum Sender</div>
+
+  <form id="dataForm">
+    <label class="labelsender" for="tableName">Tabellenblatt auswählen:</label>
+    <select id="tableName" name="tableName">
+      <option value="Chris">Chris</option>
+      <option value="Chrissi">Chrissi</option>
+      <option value="Andy">Andy</option>
+      <option value="Alex">Alex</option>
+      <option value="Michy">Michy</option>
+      <option value="Luke">Luke</option>
+      <option value="Blacky">Specki</option>
+      <option value="Sid">Sid</option>
+      <option value="Elmo">Elmo(ekelig)</option>
+      <option value="Tim">Tim</option>
+    </select>
+
+    <textarea class="Area" id="text" name="text" placeholder="Dein Text hier..." required></textarea>
+
+    <button class="Buttonsheet" type="button" onclick="submitData()">Daten eintragen</button>
+    <div id="feedback"></div>
+  </form>
+
+  <script>
+    function submitData() {
+      var tableName = document.getElementById('tableName').value;
+      var text = document.getElementById('text').value;
+
+      var sanitizedText = encodeURIComponent(text.replace(/\n/g, '||newline||'));
+
+      fetch('https://script.google.com/macros/s/AKfycbyFkfEfzZ_HMfpMXss9tnozrCZ5plSVBK_Z6rC0lonCyNRJYR56YouDBgE99N96_Uim/exec', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `tableName=${tableName}&text=${sanitizedText}`,
+      })
+      .then(response => response.text())
+      .then(data => {
+        console.log(data);
+        document.getElementById('feedback').innerHTML = 'Text erfolgreich in Google Sheets eingetragen.';
+      })
+      .catch(error => {
+        console.error('Fehler beim Senden der Daten:', error);
+        document.getElementById('feedback').innerHTML = 'Fehler beim Senden der Daten. Bitte versuchen Sie es erneut.';
+      });
+    }
+  </script>
+
+</body>
+</html>
